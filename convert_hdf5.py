@@ -48,8 +48,9 @@ def h5_to_raw(grp_name, object):
             value = int(object.name[-4:])
             value += x
             value = str(value).zfill(4)
-            filename = object.name[1:] + '.raw'
-            object.value.tofile(filename)
+            filename = f'{object.name[1:-4]}{value}.raw'
+            object[()].tofile(filename)
+            x += 1
 
         dataset_list.append(object.name)
 
